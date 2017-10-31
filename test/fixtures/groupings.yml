@@ -4,6 +4,7 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+<<<<<<< HEAD
 # G1 --+
 # |    |
 # G2   D1
@@ -14,3 +15,10 @@ grouping1:
 grouping2:
   name: grouping2
   parent_grouping: grouping1
+=======
+one: {}
+# column: value
+#
+two: {}
+# column: value
+>>>>>>> Added models for desk and groupings

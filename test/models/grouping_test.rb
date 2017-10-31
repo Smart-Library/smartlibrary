@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class GroupingTest < ActiveSupport::TestCase
+<<<<<<< HEAD
   def setup
     @grouping1 = groupings :grouping1
     @grouping2 = groupings :grouping2
@@ -31,4 +32,9 @@ class GroupingTest < ActiveSupport::TestCase
   test 'grouping1 has desk1' do
     assert_equal(desks(:desk1), @grouping1.desks.first)
   end
+=======
+  # test "the truth" do
+  #   assert true
+  # end
+>>>>>>> Added models for desk and groupings
 end
