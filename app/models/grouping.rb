@@ -3,4 +3,6 @@ class Grouping < ApplicationRecord
                              foreign_key: 'parent_grouping_id'
   belongs_to :parent_grouping, class_name: 'Grouping', optional: true
   has_many :desks
+
+  validates :name, presence: true
 end
