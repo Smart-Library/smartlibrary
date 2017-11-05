@@ -4,8 +4,13 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+# G1 --+
+# |    |
+# G2   D1
+
+grouping1:
+  name: grouping1
+
+grouping2:
+  name: grouping2
+  parent_grouping: grouping1
