@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20171031202432) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["grouping_id"], name: "index_desks_on_grouping_id"
+    t.index ["occupied"], name: "index_desks_on_occupied"
   end
 
   create_table "groupings", force: :cascade do |t|
