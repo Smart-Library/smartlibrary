@@ -3,7 +3,7 @@ class CreateDesks < ActiveRecord::Migration[5.1]
     create_table :desks do |t|
       t.belongs_to :grouping, index: true
       t.string :name
-      t.boolean :occupied, index: true, null: false
+      t.boolean :occupied, index: true, default: false
       t.timestamps
     end
   end

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20171031202432) do
   create_table "desks", force: :cascade do |t|
     t.bigint "grouping_id"
     t.string "name"
-    t.boolean "occupied", null: false
+    t.boolean "occupied", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["grouping_id"], name: "index_desks_on_grouping_id"

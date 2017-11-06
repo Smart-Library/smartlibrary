@@ -9,22 +9,20 @@ class DeskTest < ActiveSupport::TestCase
     assert @desk1.valid?
   end
 
+  test 'valid without grouping' do
+    @desk1.grouping = nil
+    assert_predicate @desk1, :valid?
+  end
+
   test 'invalid without name' do
     @desk1.name = nil
-    assert_not @desk1.valid?
+    refute_predicate @desk1, :valid?
     assert @desk1.errors.key? :name
   end
 
-  test 'invalid without grouping' do
-    @desk1.grouping = nil
-    assert_not @desk1.valid?
-    assert @desk1.errors.key? :grouping
-  end
-
-  test 'invalid without occupied' do
-    @desk1.occupied = nil
-    assert_not @desk1.valid?
-    assert @desk1.errors.key? :occupied
+  test 'occupied defaults to false' do
+    desk = Desk.new
+    assert_equal(false, desk.occupied)
   end
 
   test 'belongs to grouping1' do

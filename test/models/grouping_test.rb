@@ -16,7 +16,7 @@ class GroupingTest < ActiveSupport::TestCase
 
   test 'invalid without name' do
     @grouping1.name = nil
-    assert_not @grouping1.valid?
+    refute_predicate @grouping1, :valid?
     assert @grouping1.errors.messages.key? :name
   end
 
