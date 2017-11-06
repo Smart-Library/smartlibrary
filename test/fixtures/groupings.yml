@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+# G1 --+
+# |    |
+# G2   D1
+
+grouping1:
+  name: grouping1
+
+grouping2:
+  name: grouping2
+  parent_grouping: grouping1
