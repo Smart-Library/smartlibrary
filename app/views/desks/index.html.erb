@@ -1,0 +1,7 @@
+<h3>Desk list</h3>
+<% @desks.each do |desk| %>
+  <ul>
+    <li><%= link_to desk.name, desk_path(desk) %></li>
+    <li><%= desk.occupied %></li>
+  </ul>
+<% end %>
