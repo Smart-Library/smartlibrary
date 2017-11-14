@@ -59,6 +59,7 @@ end
 
 group :test do
   gem 'rails-controller-testing'
+  gem 'action-cable-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

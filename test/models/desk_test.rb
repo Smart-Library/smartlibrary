@@ -28,4 +28,19 @@ class DeskTest < ActiveSupport::TestCase
   test 'belongs to grouping1' do
     assert_equal(groupings(:grouping1), @desk1.grouping)
   end
+
+  test '#changes_to_broadcast no changes' do
+    @desk1.update(@desk1.slice('name'))
+    assert_nil @desk1.changes_to_broadcast
+  end
+
+  test '#changes_to_broadcast changed occupied' do
+    @desk1.update(occupied: !@desk1.occupied)
+    assert_equal @desk1.slice('id', 'occupied'), @desk1.changes_to_broadcast
+  end
+
+  test '#changes_to_broadcast changed name' do
+    @desk1.update(name: 'blahblah')
+    assert_equal @desk1.slice('id', 'name'), @desk1.changes_to_broadcast
+  end
 end

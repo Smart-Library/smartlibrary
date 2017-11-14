@@ -23,7 +23,8 @@ class DesksController < ApplicationController
 
   def update
     if @desk.update(desk_params)
-      ActionCable.server.broadcast('desks', @desk.slice('id', 'occupied'))
+      changes = @desk.changes_to_broadcast
+      ActionCable.server.broadcast('desks', changes) unless changes.nil?
       respond_with(@desk)
     else
       render_exception(@desk)
