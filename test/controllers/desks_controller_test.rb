@@ -50,13 +50,12 @@ class DesksControllerTest < ActionDispatch::IntegrationTest
     assert_response 204
   end
 
-  test "#update no broadcast when no change" do
+  test "#update doesn't broadcast when occupied attribute remains unchanged" do
     put desk_path(@desk, format: :json), params: { desk: { occupied: @desk.occupied } }
 
     assert_no_broadcasts('desks')
     assert_response 204
   end
-
 
   test "#update responds with 422 if occupied is attribute is null" do
     put desk_path(@desk, format: :json), params: { desk: { name: nil } }
