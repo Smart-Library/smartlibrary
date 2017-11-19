@@ -24,7 +24,7 @@ class DesksController < ApplicationController
   def update
     if @desk.update(desk_params)
       if broadcast_needed?
-        ActionCable.server.broadcast('desks', @desk.relevant_changes)
+        ActionCable.server.broadcast('desks', @desk.slice('id', 'name', 'occupied'))
       end
       respond_with(@desk)
     else

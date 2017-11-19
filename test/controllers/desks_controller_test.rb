@@ -46,7 +46,7 @@ class DesksControllerTest < ActionDispatch::IntegrationTest
   test "#update updates desk and responds with updated desk" do
     put desk_path(@desk, format: :json), params: { desk: { occupied: !@desk.occupied } }
 
-    assert_broadcast_on('desks', id: @desk.id, occupied: false)
+    assert_broadcast_on('desks', id: @desk.id, name: @desk.name, occupied: !@desk.occupied)
     assert_response 204
   end
 
