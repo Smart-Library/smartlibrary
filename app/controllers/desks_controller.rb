@@ -23,8 +23,9 @@ class DesksController < ApplicationController
 
   def update
     if @desk.update(desk_params)
-      changes = @desk.changes_to_broadcast
-      ActionCable.server.broadcast('desks', changes) unless changes.nil?
+      if broadcast_needed?
+        ActionCable.server.broadcast('desks', @desk.relevant_changes)
+      end
       respond_with(@desk)
     else
       render_exception(@desk)
@@ -39,5 +40,9 @@ class DesksController < ApplicationController
 
   def desk_params
     params.require(:desk).permit(:name, :occupied)
+  end
+
+  def broadcast_needed?
+    !@desk.previous_changes.slice('name', 'occupied').empty?
   end
 end

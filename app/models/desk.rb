@@ -3,9 +3,8 @@ class Desk < ApplicationRecord
 
   validates :name, presence: true
 
-  def changes_to_broadcast
+  def relevant_changes
     changed_keys = previous_changes.slice('name', 'occupied').keys
-    return nil if changed_keys.empty?
     slice(changed_keys << 'id')
   end
 end
