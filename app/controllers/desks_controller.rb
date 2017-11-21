@@ -23,9 +23,7 @@ class DesksController < ApplicationController
 
   def update
     if @desk.update(desk_params)
-      if broadcast_needed?
-        ActionCable.server.broadcast('desks', @desk.slice('id', 'name', 'occupied'))
-      end
+      broadcast_desk_update if broadcast_needed?
       respond_with(@desk)
     else
       render_exception(@desk)
@@ -44,5 +42,9 @@ class DesksController < ApplicationController
 
   def broadcast_needed?
     !@desk.previous_changes.slice('name', 'occupied').empty?
+  end
+
+  def broadcast_desk_update
+    ActionCable.server.broadcast('desks', @desk.slice('id', 'name', 'occupied'))
   end
 end
