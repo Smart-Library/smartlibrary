@@ -2,6 +2,6 @@
 <% @desks.each do |desk| %>
   <ul>
     <li><%= link_to desk.name, desk_path(desk) %></li>
-    <li><%= desk.occupied %></li>
+    <li id=<%="desk_state_#{desk.id}" %>><%= desk.occupied %></li>
   </ul>
 <% end %>
