@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:0d087edba6bad87000bfbdc7ad0052b8@greeneye.redistogo.com:11653/
   channel_prefix: smartlibrary_production
