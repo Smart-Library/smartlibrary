@@ -10,4 +10,7 @@ module DeskHelper
     'Not Occupied'
   end
 
+  def desk_element_id(desk)
+    "desk_state_#{desk.id}"
+  end
 end

@@ -8,3 +8,8 @@ desk1:
   name: desk1
   grouping: grouping1
   occupied: true
+
+desk2:
+  name: desk2
+  grouping: grouping1
+  occupied: false

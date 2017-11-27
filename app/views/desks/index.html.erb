@@ -13,7 +13,7 @@ Click on the status to see all desk details!
         <div class="card-body">
           <p class="card-title">Desk ID: <%= desk.id %></p>
           <div class="text-center">
-          <a href="<%= desk_path(desk) %>>" class="btn btn-outline-<%= desk_class(desk) %>" id="desk_state_<%= desk.id %>"><%= desk_status(desk) %></a>
+            <%= link_to desk_status(desk), desk_path(desk), class:"btn btn-outline-#{desk_class(desk)}", id: desk_element_id(desk)%>
           </div>
         </div>
       </div>
