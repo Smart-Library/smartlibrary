@@ -21,11 +21,8 @@ App.messages = App.cable.subscriptions.create('DesksChannel', {
           return;
 
       // Remove any pre-existing occupied/not_occupied classes before setting new class
-      if (target.classList.contains(OCCUPIED_CLASS))
-          target.classList.remove(OCCUPIED_CLASS);
-
-      if (target.classList.contains(NOT_OCCUPIED_CLASS))
-          target.classList.remove(NOT_OCCUPIED_CLASS);
+      target.classList.remove(OCCUPIED_CLASS);
+      target.classList.remove(NOT_OCCUPIED_CLASS);
 
       // Change button based on whether desk is occupied
       if(data.occupied)

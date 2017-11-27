@@ -2,27 +2,22 @@
 <html lang="en">
 <head>
   <title>Smart Library</title>
+
+  <!-- Bootstrap meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-
   <div class="jumbotron">
-    <a href="/">
-      <h1 class="display-4">Smart Library</h1>
-    </a>
+    <%= link_to "Smart Library", root_path, class: "display-4" %>
     <p class="lead">Think Libraries. But Smarter.</p>
-
   </div>
-
-
   <%= yield %>
-
 </body>
 </html>

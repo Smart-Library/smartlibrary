@@ -5,7 +5,7 @@ class DesksController < ApplicationController
   respond_to :json, only: %i(show create update)
 
   def index
-    @desks = Desk.all
+    @desks = Desk.order(:id)
   end
 
   def create
