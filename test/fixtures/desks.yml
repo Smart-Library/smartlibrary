@@ -5,11 +5,11 @@
 # below each fixture, per the syntax in the comments below
 #
 desk1:
-  name: desk1
+  name: Occupied Desk
   grouping: grouping1
   occupied: true
 
 desk2:
-  name: desk2
+  name: Unoccupied Desk
   grouping: grouping1
   occupied: false
