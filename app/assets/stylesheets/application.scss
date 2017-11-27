@@ -14,3 +14,26 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+div.jumbotron {
+  padding: 0.5rem 2rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.jumbotron a:hover{
+  text-decoration: none;
+}
+
+.desk-card{
+  margin: 5px;
+}
+
+.desk-card-col{
+  max-width: 20em;
+  min-width: 20em;
+}
+
+.desk-row{
+  padding-left: 5em;
+  padding-right: 5em
+}

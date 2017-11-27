@@ -1,7 +1,43 @@
-<h3>Desk list</h3>
-<% @desks.each do |desk| %>
-  <ul>
-    <li><%= link_to desk.name, desk_path(desk) %></li>
-    <li id=<%="desk_state_#{desk.id}" %>><%= desk.occupied %></li>
-  </ul>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Click on the status to see all desk details!</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<br>
+
+<div class="row desk-row">
+<% @desks.sort().each do |desk| %>
+    <div class="col-6-auto desk-card-col">
+      <div class="card desk-card">
+        <h5 class="card-header">
+          <%= desk.name %>
+        </h5>
+        <div class="card-body">
+          <p class="card-title">Desk ID: <%= desk.id %></p>
+
+          <% button_class = 'btn-outline-success' %>
+          <% status_text = 'Not Occupied' %>
+
+          <% if desk.occupied? %>
+              <% button_class = 'btn-outline-danger' %>
+              <% status_text = 'Occupied' %>
+          <% end %>
+
+          <div class="text-center">
+          <a href="<%= desk_path(desk) %>>" class="btn <%= button_class %>" id="desk_state_<%= desk.id %>"><%= status_text %></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
 <% end %>
+</div>
+
+
+
+
+
+
+
