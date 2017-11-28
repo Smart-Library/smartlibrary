@@ -21,27 +21,3 @@ div.jumbotron {
 .jumbotron a:hover{
   text-decoration: none;
 }
-
-.desk-card{
-  margin: 0.5rem;
-}
-
-.desk-card-col{
-  max-width: 15em;
-  min-width: 15em;
-}
-
-.desk-row{
-  padding-left: 5em;
-  padding-right: 5em
-}
-
-.text-center > .alert{
-  padding: 0.3rem 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-body > .alert, body > .alert > .close
-{
-  padding: 0.3rem 1.25rem 0.3rem 1.25rem;
-}

@@ -45,6 +45,11 @@ class DesksController < ApplicationController
   end
 
   def broadcast_desk_update
-    ActionCable.server.broadcast('desks', @desk.slice('id', 'name', 'occupied'))
+
+    ActionCable.server.broadcast('desks',
+                                 desk_info: @desk.slice('id', 'name', 'occupied'),
+                                 element_style: helpers.desk_class(@desk),
+                                 element_text: helpers.desk_status(@desk),
+                                 element_id: helpers.desk_element_id(@desk))
   end
 end

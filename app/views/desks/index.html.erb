@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'index' %>
+
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
 Click on the status to see all desk details!
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -13,7 +15,7 @@ Click on the status to see all desk details!
         <div class="card-body">
           <p class="card-title">Desk ID: <%= desk.id %></p>
           <div class="text-center">
-            <%= link_to desk_status(desk), desk_path(desk), class:"btn btn-outline-#{desk_class(desk)}", id: desk_element_id(desk)%>
+            <%= link_to desk_status(desk), desk_path(desk), class: "btn btn-outline-#{desk_class(desk)}", id: desk_element_id(desk)%>
           </div>
         </div>
       </div>
