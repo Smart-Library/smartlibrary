@@ -4,7 +4,7 @@ class DesksControllerTest < ActionDispatch::IntegrationTest
   include ActionCable::TestHelper
 
   setup do
-    @desk = desks(:desk1)
+    @desk = desks(:test_desk)
   end
 
   test "#index responds with all the desks" do

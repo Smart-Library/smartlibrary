@@ -29,6 +29,6 @@ class GroupingTest < ActiveSupport::TestCase
   end
 
   test 'grouping1 has desk1' do
-    assert_equal(desks(:desk1), @grouping1.desks.first)
+    assert_equal(desks(:test_desk), @grouping1.desks.first)
   end
 end
