@@ -11,7 +11,7 @@ App.cable = ActionCable.createConsumer();
 App.messages = App.cable.subscriptions.create('DesksChannel', {
   received: function(data) {
       // Get desk state button
-      var target = $("#" + data.element_id)[0];
+      var target = $("#desk_state_" + data.desk_info.id)[0];
 
       if(!target)
           return;
@@ -21,7 +21,7 @@ App.messages = App.cable.subscriptions.create('DesksChannel', {
       target.classList.remove('btn-outline-danger');
 
       // Change button based on whether desk is occupied
-      target.classList.add("btn-outline-" + data.element_style);
-      target.innerText = data.element_text;
+      target.classList.add(data.desk_info.occupied ? 'btn-outline-danger' : 'btn-outline-success');
+      target.innerText = data.desk_info.occupied ? 'Occupied' : 'Not Occupied';
   }
 });
