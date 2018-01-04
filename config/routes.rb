@@ -3,5 +3,9 @@ Rails.application.routes.draw do
 
   resources :desks
 
+  namespace :admin do
+    resources :layouts, only: %i(edit update)
+  end
+
   mount ActionCable.server => '/cable'
 end

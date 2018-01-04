@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031202432) do
+ActiveRecord::Schema.define(version: 20180107202534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "coordinates", force: :cascade do |t|
+    t.float "x", null: false
+    t.float "y", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "desks", force: :cascade do |t|
     t.bigint "grouping_id"
@@ -21,6 +28,8 @@ ActiveRecord::Schema.define(version: 20171031202432) do
     t.boolean "occupied", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "coordinate_id"
+    t.index ["coordinate_id"], name: "index_desks_on_coordinate_id"
     t.index ["grouping_id"], name: "index_desks_on_grouping_id"
     t.index ["occupied"], name: "index_desks_on_occupied"
   end
@@ -30,6 +39,8 @@ ActiveRecord::Schema.define(version: 20171031202432) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "coordinate_id"
+    t.index ["coordinate_id"], name: "index_groupings_on_coordinate_id"
     t.index ["parent_grouping_id"], name: "index_groupings_on_parent_grouping_id"
   end
 

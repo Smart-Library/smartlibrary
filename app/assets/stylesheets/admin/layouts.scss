@@ -1,0 +1,32 @@
+// Place all the styles related to the admin/layouts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.layout-area {
+  background-color: #eee;
+  height: 600px;
+}
+
+.desk,
+.grouping {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  position: absolute;
+
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+
+  padding: 4%;
+}
+
+.desk {
+  background-color: #29e;
+  border-radius: 0;
+}
+
+.grouping {
+  background-color: #e92;
+  border-radius: 50%;
+}
