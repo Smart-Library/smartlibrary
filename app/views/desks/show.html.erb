@@ -1,7 +1,19 @@
-<%= link_to "Back to desk list", root_path %>
-<h3>Desk details</h3>
-<ul>
-  <li><%= @desk.id %></li>
-  <li><%= @desk.name %></li>
-  <li><%= @desk.occupied %></li>
-</ul>
+
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= root_path %>">Desk Listing</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @desk.name %></li>
+  </ol>
+</nav>
+
+<div class="col-lg">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title"><%= @desk.name %></h4>
+      <p class="card-text">Desk ID: <%= @desk.id %></p>
+      <div class="text-center">
+        <div class="alert alert-<%= desk_class(@desk) %>" role="alert"><%= desk_status(@desk) %></div>
+      </div>
+    </div>
+  </div>
+</div>

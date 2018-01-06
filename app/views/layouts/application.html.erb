@@ -1,15 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Smartlibrary</title>
-    <%= csrf_meta_tags %>
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Smart Library</title>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <!-- Bootstrap meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <body>
-    <h1>SMART LIBRARY</h1>
-    <%= yield %>
-  </body>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+<body>
+  <div class="jumbotron">
+    <%= link_to 'Smart Library', root_path, class: 'display-4' %>
+    <p class="lead">Think Libraries. But Smarter.</p>
+  </div>
+  <%= yield %>
+</body>
 </html>

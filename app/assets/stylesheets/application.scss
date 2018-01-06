@@ -11,6 +11,15 @@
  * It is generally better to create a new file per style scope.
  *
  */
-
-@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "index";
+@import "show";
+
+div.jumbotron {
+  padding: 0.5rem 2rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.jumbotron a:hover {
+  text-decoration: none;
+}

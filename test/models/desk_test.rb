@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DeskTest < ActiveSupport::TestCase
   def setup
-    @desk1 = desks :desk1
+    @desk1 = desks :test_desk
   end
 
   test 'valid' do

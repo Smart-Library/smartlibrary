@@ -2,9 +2,10 @@ require 'test_helper'
 
 class DesksControllerTest < ActionDispatch::IntegrationTest
   include ActionCable::TestHelper
+  include DeskHelper
 
   setup do
-    @desk = desks(:desk1)
+    @desk = desks(:test_desk)
   end
 
   test "#index responds with all the desks" do
@@ -44,9 +45,18 @@ class DesksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#update updates desk and responds with updated desk" do
-    put desk_path(@desk, format: :json), params: { desk: { occupied: !@desk.occupied } }
+    occupied = @desk.occupied
 
-    assert_broadcast_on('desks', id: @desk.id, name: @desk.name, occupied: !@desk.occupied)
+    put desk_path(@desk, format: :json), params: { desk: { occupied: !occupied } }
+
+    @desk.reload
+
+    assert_equal !occupied, @desk.occupied
+
+
+    assert_broadcast_on('desks', desk_info: {id: @desk.id,
+                                             name: @desk.name,
+                                             occupied: @desk.occupied})
     assert_response 204
   end
 

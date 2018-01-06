@@ -4,7 +4,17 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-desk1:
-  name: desk1
+test_desk:
+  name: Test Desk
   grouping: grouping1
   occupied: true
+
+occupied_desk:
+  name: Occupied Desk
+  grouping: grouping1
+  occupied: true
+
+unoccupied_desk:
+  name: Unoccupied Desk
+  grouping: grouping1
+  occupied: false

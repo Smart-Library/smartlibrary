@@ -5,7 +5,7 @@ class DesksController < ApplicationController
   respond_to :json, only: %i(show create update)
 
   def index
-    @desks = Desk.all
+    @desks = Desk.order(:id)
   end
 
   def create
@@ -45,6 +45,9 @@ class DesksController < ApplicationController
   end
 
   def broadcast_desk_update
-    ActionCable.server.broadcast('desks', @desk.slice('id', 'name', 'occupied'))
+    ActionCable.server.broadcast('desks',
+                                 desk_info: @desk.slice('id',
+                                                        'name',
+                                                        'occupied'))
   end
 end

@@ -1,7 +1,22 @@
-<h3>Desk list</h3>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+Click on the status to see all desk details!
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="row desk-row">
 <% @desks.each do |desk| %>
-  <ul>
-    <li><%= link_to desk.name, desk_path(desk) %></li>
-    <li id=<%="desk_state_#{desk.id}" %>><%= desk.occupied %></li>
-  </ul>
+    <div class="col-6-auto desk-card-col">
+      <div class="card desk-card">
+        <h5 class="card-header"><%= desk.name %></h5>
+        <div class="card-body">
+          <p class="card-title">Desk ID: <%= desk.id %></p>
+          <div class="text-center">
+            <%= link_to desk_status(desk), desk_path(desk), class: "btn btn-outline-#{desk_class(desk)}", id: desk_element_id(desk)%>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>
+</div>
