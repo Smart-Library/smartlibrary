@@ -1,5 +1,4 @@
 module DeskHelper
-
   def desk_class(desk)
     desk.occupied? ? 'danger' : 'success'
   end

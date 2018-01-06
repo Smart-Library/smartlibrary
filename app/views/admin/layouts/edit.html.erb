@@ -6,8 +6,9 @@
   </div>
   <div class="row">
     <div class="layout-area col-sm-12">
-        <%= render partial: 'area', collection: @desks %>
-        <%= render partial: 'area', collection: @child_groupings %>
+      <% @children.each do |child| %>
+        <%= area_tag(child, 'draggable', child.type) %>
+      <% end %>
     </div>
   </div>
   <div class="row">

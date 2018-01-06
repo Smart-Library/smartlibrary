@@ -1,13 +1,12 @@
 require 'test_helper'
 
 class Admin::LayoutsControllerTest < ActionDispatch::IntegrationTest
-
-  def setup
+  setup do
     @grouping1 = groupings :grouping1
     @grouping2 = groupings :grouping2
   end
 
-  test '#edit' do
+  test '#edit responds with success' do
     get edit_admin_layout_url(@grouping1)
     assert_response :success
   end

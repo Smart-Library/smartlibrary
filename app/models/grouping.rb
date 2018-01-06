@@ -10,4 +10,12 @@ class Grouping < ApplicationRecord
   def children
     desks + child_groupings
   end
+
+  def type
+    'grouping'
+  end
+
+  def occupied?
+    children.all? { |child| child.occupied? }
+  end
 end

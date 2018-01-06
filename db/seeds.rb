@@ -15,7 +15,7 @@ Desk.create name: 'Desk 201', grouping: floor2, occupied: true
 Desk.create name: 'Desk 202', grouping: floor2, occupied: false
 Desk.create name: 'Desk 203', grouping: floor2, occupied: false
 
-Desk.create name: 'Desk 301', grouping: floor3, occupied: false
+Desk.create name: 'Desk 301', grouping: floor3, occupied: true
 Desk.create name: 'Desk 302', grouping: floor3, occupied: true
 Desk.create name: 'Desk 303', grouping: floor3, occupied: true
 
