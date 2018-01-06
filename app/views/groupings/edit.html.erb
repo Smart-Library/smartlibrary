@@ -5,7 +5,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="layout-area col-sm-12">
+    <div class="layout-area col-sm-12"
+         style="background-image: url(<%= @background %>);">
       <% @children.each do |child| %>
         <%= area_tag(child, 'draggable') %>
       <% end %>
@@ -13,7 +14,8 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <%= form_for @grouping, url: grouping_path, method: 'put' do |f| %>
+      <%= form_for @grouping, url: grouping_path, method: 'put', html: { multipart: true } do |f| %>
+        <%= f.file_field :background, class: 'form-control' %>
         <%= f.submit 'Update Layout', class: 'btn btn-success' %>
       <% end %>
     </div>
