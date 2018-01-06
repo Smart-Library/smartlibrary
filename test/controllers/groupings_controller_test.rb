@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GroupingsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @grouping1 = groupings(:grouping1)
+    @grouping1 = groupings :grouping1
     @grouping2 = groupings :grouping2
   end
 
