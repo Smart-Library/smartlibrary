@@ -18,3 +18,9 @@ unoccupied_desk:
   name: Unoccupied Desk
   grouping: grouping1
   occupied: false
+
+desk_w_layout:
+  name: Desk With Layout
+  grouping: grouping2
+  coordinate: one
+  occupied: false

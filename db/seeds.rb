@@ -20,3 +20,8 @@ Desk.create name: 'Desk 302', grouping: floor3, occupied: true
 Desk.create name: 'Desk 303', grouping: floor3, occupied: true
 
 Desk.create name: 'Bench in Quad', grouping: carleton, occupied: false
+
+(Grouping.all + Desk.all).each do |elem|
+  elem.create_coordinate(x: rand(0..500), y: rand(0..500))
+  elem.save
+end

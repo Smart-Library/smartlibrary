@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require popper
 //= require bootstrap-sprockets
+//= require interact.min
 //= require_tree .
 //= require_tree ./channels

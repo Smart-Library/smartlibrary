@@ -31,4 +31,8 @@ class GroupingTest < ActiveSupport::TestCase
   test 'grouping1 has desk1' do
     assert_equal(desks(:test_desk), @grouping1.desks.first)
   end
+
+  test '#children returns array of desks and groupings inside the grouping' do
+    assert_equal @grouping1.desks + @grouping1.child_groupings, @grouping1.children
+  end
 end

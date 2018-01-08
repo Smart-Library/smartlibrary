@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Layout for <%= @grouping_name %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="layout-area col-sm-12">
+        <%= render partial: 'area', collection: @desks %>
+        <%= render partial: 'area', collection: @child_groupings %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form_for @grouping, url: admin_layout_path, method: 'put' do |f| %>
+        <%= f.submit 'Update Layout', class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  window.onload = function () {
+    setupInteractJS();
+    registerOnUpdateLayout();
+  }
+</script>
