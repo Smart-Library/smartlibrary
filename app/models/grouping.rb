@@ -16,6 +16,6 @@ class Grouping < ApplicationRecord
   end
 
   def occupied?
-    children.all? { |child| child.occupied? }
+    children.all?(&:occupied?)
   end
 end
