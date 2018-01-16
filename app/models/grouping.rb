@@ -12,7 +12,7 @@ class Grouping < ApplicationRecord
   end
 
   def type
-    'grouping'
+    self.class.name.downcase
   end
 
   def occupied?

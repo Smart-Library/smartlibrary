@@ -5,6 +5,6 @@ class Desk < ApplicationRecord
   validates :name, presence: true
 
   def type
-    'desk'
+    self.class.name.downcase
   end
 end
