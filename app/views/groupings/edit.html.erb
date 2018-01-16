@@ -6,13 +6,14 @@
   </div>
   <div class="row">
     <div class="layout-area col-sm-12">
-        <%= render partial: 'area', collection: @desks %>
-        <%= render partial: 'area', collection: @child_groupings %>
+      <% @children.each do |child| %>
+        <%= area_tag(child, 'draggable') %>
+      <% end %>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <%= form_for @grouping, url: admin_layout_path, method: 'put' do |f| %>
+      <%= form_for @grouping, url: grouping_path, method: 'put' do |f| %>
         <%= f.submit 'Update Layout', class: 'btn btn-success' %>
       <% end %>
     </div>

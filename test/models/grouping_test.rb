@@ -35,4 +35,12 @@ class GroupingTest < ActiveSupport::TestCase
   test '#children returns array of desks and groupings inside the grouping' do
     assert_equal @grouping1.desks + @grouping1.child_groupings, @grouping1.children
   end
+
+  test '#occupied? false' do
+    refute_predicate @grouping1, :occupied?
+  end
+
+  test '#occupied? true' do
+    assert_predicate @grouping2, :occupied?
+  end
 end

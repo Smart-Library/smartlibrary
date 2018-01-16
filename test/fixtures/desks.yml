@@ -19,8 +19,13 @@ unoccupied_desk:
   grouping: grouping1
   occupied: false
 
-desk_w_layout:
-  name: Desk With Layout
+desk_w_coordinate:
+  name: Desk With Coordinate
   grouping: grouping2
   coordinate: one
-  occupied: false
+  occupied: true
+
+desk_wo_coordinate:
+  name: Desk Without Coordiante
+  grouping: grouping2
+  occupied: true

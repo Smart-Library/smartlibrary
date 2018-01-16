@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1><%= @grouping_name %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="layout-area col-sm-12">
+        <% @children.each do |child| %>
+          <%= link_to(child) do %>
+            <%= area_tag(child) %>
+          <% end %>
+        <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= link_to 'Parent Grouping', @parent, class: 'btn btn-default' %>
+    </div>
+  </div>
+</div>

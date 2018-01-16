@@ -7,10 +7,10 @@
   height: 600px;
 }
 
-.desk,
-.grouping {
+.area {
   height: 50px;
   width: 50px;
+
   display: inline-block;
   position: absolute;
 
@@ -22,11 +22,17 @@
 }
 
 .desk {
-  background-color: #29e;
   border-radius: 0;
 }
 
 .grouping {
-  background-color: #e92;
   border-radius: 50%;
+}
+
+.occupied {
+  background-color: red;
+}
+
+.free {
+  background-color: green;
 }

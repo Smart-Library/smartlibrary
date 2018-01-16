@@ -1,14 +1,19 @@
 require 'test_helper'
 
-class Admin::LayoutsControllerTest < ActionDispatch::IntegrationTest
-
-  def setup
-    @grouping1 = groupings :grouping1
+class GroupingsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @grouping1 = groupings(:grouping1)
     @grouping2 = groupings :grouping2
   end
 
-  test '#edit' do
-    get edit_admin_layout_url(@grouping1)
+  test "#show responds with success" do
+    get grouping_path(@grouping1)
+
+    assert_response :success
+  end
+
+  test '#edit responds with success' do
+    get edit_grouping_url(@grouping1)
     assert_response :success
   end
 
@@ -30,14 +35,14 @@ class Admin::LayoutsControllerTest < ActionDispatch::IntegrationTest
     # generate mock layout param from client for updating coordinates
     params = { layout: { desk: desk_json, grouping: grouping_json }.to_json }
 
-    put admin_layout_url(grouping), params: params
+    put grouping_url(grouping), params: params
     # get updated grouping from db
     grouping = Grouping.find(grouping.id)
 
     # assert coordinates have been properly updated
     assert_coordinate grouping.desks, desk_json
     assert_coordinate grouping.child_groupings, grouping_json
-    assert_redirected_to edit_admin_layout_path(grouping)
+    assert_redirected_to edit_grouping_path(grouping)
   end
 
   def assert_coordinate(elems, coordinates)
