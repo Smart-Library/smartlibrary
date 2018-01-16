@@ -7,7 +7,7 @@
   <div class="row">
     <div class="layout-area col-sm-12">
       <% @children.each do |child| %>
-        <%= area_tag(child, 'draggable', child.type) %>
+        <%= area_tag(child, 'draggable') %>
       <% end %>
     </div>
   </div>

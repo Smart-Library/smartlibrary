@@ -8,7 +8,7 @@
     <div class="layout-area col-sm-12">
         <% @children.each do |child| %>
           <%= link_to(child) do %>
-            <%= area_tag(child, child.type) %>
+            <%= area_tag(child) %>
           <% end %>
         <% end %>
     </div>
