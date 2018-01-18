@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GroupingsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @grouping1 = groupings(:grouping1)
+    @grouping1 = groupings :grouping1
     @grouping2 = groupings :grouping2
   end
 
@@ -12,19 +12,32 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test '#edit responds with success' do
+  test "#edit responds with success" do
     get edit_grouping_url(@grouping1)
     assert_response :success
   end
 
-  test '#update coordinate already exists' do
+  test "#update coordinate already exists" do
     # the desk part of grouping2 already has a coordinate
     assert_update @grouping2
   end
 
-  test '#update coordinate does not exist' do
+  test "#update coordinate doesn't exist" do
     # the desks and groupings under grouping1 don't have coordinates yet
     assert_update @grouping1
+  end
+
+  test "#update with background image" do
+    file_name = 'MacOdrum-LV1-floorplan-web.svg'
+    content_type = 'image/svg'
+    img = fixture_file_upload('files/' + file_name, content_type)
+
+    put grouping_url(@grouping2), params: { grouping: { background: img } }
+    @grouping2.reload
+
+    assert_equal file_name, @grouping2.background_file_name
+    assert_equal content_type, @grouping2.background_content_type
+    assert_redirected_to edit_grouping_path(@grouping2)
   end
 
   private

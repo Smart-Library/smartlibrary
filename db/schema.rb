@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180107202534) do
+ActiveRecord::Schema.define(version: 20180109040504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,10 @@ ActiveRecord::Schema.define(version: 20180107202534) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "coordinate_id"
+    t.string "background_file_name"
+    t.string "background_content_type"
+    t.integer "background_file_size"
+    t.datetime "background_updated_at"
     t.index ["coordinate_id"], name: "index_groupings_on_coordinate_id"
     t.index ["parent_grouping_id"], name: "index_groupings_on_parent_grouping_id"
   end
