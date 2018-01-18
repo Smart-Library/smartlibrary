@@ -15,15 +15,11 @@ class GroupingsController < ApplicationController
   end
 
   def update
-    if params[:grouping]
-      unless @grouping.update(grouping_params)
-        return render_exception(@grouping)
-      end
-    end
+    return render_exception(@grouping) if params[:grouping] && !@grouping.update(grouping_params)
     if params[:layout]
       @grouping.children.each do |area|
         x, y = coordinate(area)
-        if x.present? && y.present?
+        if x && y
           if area.coordinate
             area.coordinate.x = x
             area.coordinate.y = y
