@@ -8,6 +8,19 @@ class GroupingsController < ApplicationController
     @background = @grouping.background.url
   end
 
+  def new
+    @grouping = Grouping.new
+  end
+
+  def create
+    @grouping = Grouping.new(new_grouping_params)
+    if @grouping.save
+      redirect_to @grouping
+    else
+      render 'new'
+    end
+  end
+
   def edit
     @grouping_name = @grouping.name
     @children = @grouping.children
@@ -38,6 +51,10 @@ class GroupingsController < ApplicationController
 
   def load_grouping
     @grouping = Grouping.find(params.require(:id))
+  end
+
+  def new_grouping_params
+    params.require(:grouping).permit(:parent_grouping_id, :name)
   end
 
   def grouping_params

@@ -13,6 +13,33 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "#new responds with success" do
+    get new_grouping_url
+    assert_response :success
+  end
+
+  test "#create with name and parent" do
+    post groupings_url, params: { grouping: { name: 'new', parent_grouping_id: @grouping1.id } }
+
+    grouping = Grouping.last
+    assert_equal 'new', grouping.name
+    assert_equal @grouping1.id, grouping.parent_grouping_id
+  end
+
+  test "#create without parent" do
+    post groupings_url, params: { grouping: { name: 'new' } }
+
+    grouping = Grouping.last
+    assert_equal 'new', grouping.name
+    assert_nil grouping.parent_grouping_id
+  end
+
+  test "#create without name" do
+    assert_no_difference 'Grouping.count' do
+      post groupings_url, params: { grouping: { parent_grouping_id: @grouping1.id } }
+    end
+  end
+
   test "#edit responds with success" do
     get edit_grouping_url(@grouping1)
     assert_response :success
