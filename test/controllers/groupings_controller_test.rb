@@ -4,6 +4,7 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @grouping1 = groupings :grouping1
     @grouping2 = groupings :grouping2
+    @grouping3 = groupings :grouping3
   end
 
   test "#show responds with success" do
@@ -38,6 +39,21 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
     assert_equal file_name, @grouping2.background_file_name
     assert_equal content_type, @grouping2.background_content_type
     assert_redirected_to edit_grouping_path(@grouping2)
+  end
+
+  test "#update grouping name" do
+    new_name = 'some new name'
+    put grouping_url(@grouping1), params: { grouping: { name: new_name}}
+    @grouping1.reload
+
+    assert_equal new_name, @grouping1.name
+  end
+
+  test "#update change grouping parent" do
+    put grouping_url(@grouping2), params: { grouping: { parent_grouping_id: @grouping3.id }}
+    @grouping2.reload
+
+    assert_equal @grouping3, @grouping2.parent_grouping
   end
 
   private

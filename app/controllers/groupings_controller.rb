@@ -41,7 +41,7 @@ class GroupingsController < ApplicationController
   end
 
   def grouping_params
-    params[:grouping].permit(:background)
+    params[:grouping].permit(:background, :parent_grouping_id, :name)
   end
 
   def coordinate(area)

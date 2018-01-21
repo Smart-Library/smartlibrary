@@ -8,6 +8,11 @@ class GroupingHelperTest < ActionView::TestCase
     @unoccupied_desk = desks(:unoccupied_desk)
     @w_coordinate = desks(:desk_w_coordinate)
     @wo_coordinate = desks(:desk_wo_coordinate)
+
+    @template = Object.new
+    @template.extend ActionView::Helpers::FormHelper
+    @template.extend ActionView::Helpers::FormOptionsHelper
+    @form_builder = FormBuilder.new(:grouping, @grouping, @template, {})
   end
 
   test "#area_tag produces div element" do
@@ -50,5 +55,19 @@ class GroupingHelperTest < ActionView::TestCase
 
   test "#area_tag style contains transform" do
     assert_match /style="transform: translate\(0px, 0px\)"/, area_tag(@wo_coordinate)
+  end
+
+  test "#grouping_select has empty option" do
+    assert_match /<option value=""><\/option>/, @form_builder.grouping_select(:parent_grouping_id)
+  end
+
+  test "#grouping_select produces select" do
+    assert_match /^<select name="grouping\[parent_grouping_id\]"/,
+                 @form_builder.grouping_select(:parent_grouping_id)
+  end
+
+  test "#grouping_select has grouping value and text" do
+    assert_match /<option value="#{@grouping.id}">#{@grouping.name}<\/option>/,
+                 @form_builder.grouping_select(:parent_grouping_id)
   end
 end
