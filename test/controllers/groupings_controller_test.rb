@@ -89,6 +89,13 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
     assert_equal @grouping3, @grouping2.parent_grouping
   end
 
+  test "#destroy successfully deletes record" do
+    assert_difference 'Grouping.count', -1 do
+      delete grouping_url(@grouping1)
+    end
+    assert_nil Grouping.find_by_id(@grouping1.id)
+  end
+
   private
 
   def assert_update(grouping)
