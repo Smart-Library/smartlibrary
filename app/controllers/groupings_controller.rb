@@ -1,6 +1,10 @@
 class GroupingsController < ApplicationController
   before_action :load_grouping, only: %i(show edit update)
 
+  def index
+    @groupings = Grouping.all
+  end
+
   def show
     @parent = @grouping.parent_grouping
     @grouping_name = @grouping.name

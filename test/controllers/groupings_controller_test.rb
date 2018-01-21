@@ -7,6 +7,12 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
     @grouping3 = groupings :grouping3
   end
 
+  test "#index responds with success" do
+    get groupings_path
+
+    assert_response :success
+  end
+
   test "#show responds with success" do
     get grouping_path(@grouping1)
 
