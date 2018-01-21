@@ -1,5 +1,5 @@
 class GroupingsController < ApplicationController
-  before_action :load_grouping, only: %i(show edit update)
+  before_action :load_grouping, only: %i(show edit update destroy)
 
   def index
     @groupings = Grouping.all
@@ -49,6 +49,11 @@ class GroupingsController < ApplicationController
       end
     end
     redirect_to edit_grouping_path
+  end
+
+  def destroy
+    @grouping.destroy
+    redirect_to groupings_path
   end
 
   private
