@@ -28,8 +28,8 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#update with background image" do
-    file_name = 'MacOdrum-LV1-floorplan-web.svg'
-    content_type = 'image/svg'
+    file_name = 'library.jpg'
+    content_type = 'image/jpeg'
     img = fixture_file_upload('files/' + file_name, content_type)
 
     put grouping_url(@grouping2), params: { grouping: { background: img } }

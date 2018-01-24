@@ -37,7 +37,7 @@ gem 'responders'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'jquery-rails'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'paperclip', '~> 5.0.0'
+gem 'paperclip', '~> 5.2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
