@@ -52,8 +52,12 @@ class GroupingsController < ApplicationController
   end
 
   def destroy
-    @grouping.destroy
-    redirect_to groupings_path
+    if @grouping.destroy
+      redirect_to groupings_path
+    else
+      flash[:error] = @grouping.errors.full_messages
+      redirect_to edit_grouping_path
+    end
   end
 
   private

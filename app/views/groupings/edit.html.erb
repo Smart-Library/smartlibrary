@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for @grouping, url: grouping_path, method: 'put', html: { multipart: true } do |f| %>
+  <%= form_for @grouping, builder: GroupingFormBuilder, url: grouping_path, method: 'put', html: { multipart: true } do |f| %>
     <%= render 'grouping_form', form: f %>
     <div class="row">
       <div class="col-sm-12">

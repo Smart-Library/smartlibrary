@@ -40,7 +40,7 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
     assert_nil grouping.parent_grouping_id
   end
 
-  test "#create without name" do
+  test "#create nothing created when grouping doesn't have a name" do
     assert_no_difference 'Grouping.count' do
       post groupings_url, params: { grouping: { parent_grouping_id: @grouping1.id } }
     end
@@ -67,9 +67,8 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
     img = fixture_file_upload('files/' + file_name, content_type)
 
     put grouping_url(@grouping2), params: { grouping: { background: img } }
-    @grouping2.reload
 
-    assert_equal file_name, @grouping2.background_file_name
+    assert_equal file_name, @grouping2.reload.background_file_name
     assert_equal content_type, @grouping2.background_content_type
     assert_redirected_to edit_grouping_path(@grouping2)
   end
@@ -77,16 +76,14 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
   test "#update grouping name" do
     new_name = 'some new name'
     put grouping_url(@grouping1), params: { grouping: { name: new_name}}
-    @grouping1.reload
 
-    assert_equal new_name, @grouping1.name
+    assert_equal new_name, @grouping1.reload.name
   end
 
   test "#update change grouping parent" do
     put grouping_url(@grouping2), params: { grouping: { parent_grouping_id: @grouping3.id }}
-    @grouping2.reload
 
-    assert_equal @grouping3, @grouping2.parent_grouping
+    assert_equal @grouping3, @grouping2.reload.parent_grouping
   end
 
   test "#destroy successfully deletes record" do
