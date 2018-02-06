@@ -25,8 +25,8 @@
   <% end %>
 </div>
 <script type="text/javascript">
-  window.onload = function () {
+  $(document).on('turbolinks:load', function () {
     setupInteractJS();
     registerOnUpdateLayout();
-  }
+  })
 </script>
