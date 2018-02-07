@@ -17,7 +17,7 @@ class GroupingsController < ApplicationController
   end
 
   def create
-    @grouping = Grouping.new(new_grouping_params)
+    @grouping = Grouping.new(grouping_params)
     if @grouping.save
       redirect_to @grouping
     else
@@ -66,12 +66,8 @@ class GroupingsController < ApplicationController
     @grouping = Grouping.find(params.require(:id))
   end
 
-  def new_grouping_params
-    params.require(:grouping).permit(:parent_grouping_id, :name)
-  end
-
   def grouping_params
-    params[:grouping].permit(:background, :parent_grouping_id, :name)
+    params.require(:grouping).permit(:background, :parent_grouping_id, :name)
   end
 
   def coordinate(area)
