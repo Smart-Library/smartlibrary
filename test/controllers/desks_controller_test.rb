@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class DesksControllerTest < ActionDispatch::IntegrationTest
-  include ActionCable::TestHelper
   include DeskHelper
 
   setup do
@@ -46,31 +45,21 @@ class DesksControllerTest < ActionDispatch::IntegrationTest
 
   test "#update updates desk and responds with updated desk" do
     occupied = @desk.occupied
-
     put desk_path(@desk, format: :json), params: { desk: { occupied: !occupied } }
 
-    @desk.reload
-
-    assert_equal !occupied, @desk.occupied
-
-
-    assert_broadcast_on('desks', desk_info: {id: @desk.id,
-                                             name: @desk.name,
-                                             occupied: @desk.occupied})
+    assert_equal !occupied, @desk.reload.occupied
     assert_response 204
   end
 
   test "#update doesn't broadcast when occupied attribute remains unchanged" do
     put desk_path(@desk, format: :json), params: { desk: { occupied: @desk.occupied } }
 
-    assert_no_broadcasts('desks')
     assert_response 204
   end
 
   test "#update responds with 422 if occupied is attribute is null" do
     put desk_path(@desk, format: :json), params: { desk: { name: nil } }
 
-    assert_no_broadcasts 'desk'
     assert_response :unprocessable_entity
   end
 end
