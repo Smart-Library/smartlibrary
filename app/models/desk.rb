@@ -10,6 +10,14 @@ class Desk < ApplicationRecord
     self.class.name.downcase
   end
 
+  def hierarchy
+    if grouping
+      grouping.hierarchy << self
+    else
+      [self]
+    end
+  end
+
   private
 
   def broadcast_occupied

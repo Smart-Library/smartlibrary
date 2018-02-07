@@ -20,4 +20,12 @@ class Grouping < ApplicationRecord
   def occupied?
     children.all?(&:occupied?)
   end
+
+  def hierarchy
+    if parent_grouping
+      parent_grouping.hierarchy << self
+    else
+      [self]
+    end
+  end
 end
