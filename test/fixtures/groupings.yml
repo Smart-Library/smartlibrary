@@ -14,3 +14,6 @@ grouping1:
 grouping2:
   name: grouping2
   parent_grouping: grouping1
+
+grouping3:
+  name: grouping3

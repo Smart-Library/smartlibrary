@@ -1,11 +1,28 @@
 class GroupingsController < ApplicationController
-  before_action :load_grouping, only: %i(show edit update)
+  before_action :load_grouping, only: %i(show edit update destroy)
+
+  def index
+    @groupings = Grouping.all
+  end
 
   def show
     @parent = @grouping.parent_grouping
     @grouping_name = @grouping.name
     @children = @grouping.children
     @background = @grouping.background.url
+  end
+
+  def new
+    @grouping = Grouping.new
+  end
+
+  def create
+    @grouping = Grouping.new(grouping_params)
+    if @grouping.save
+      redirect_to @grouping
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -34,6 +51,15 @@ class GroupingsController < ApplicationController
     redirect_to edit_grouping_path
   end
 
+  def destroy
+    if @grouping.destroy
+      redirect_to groupings_path
+    else
+      flash[:error] = @grouping.errors.full_messages
+      redirect_to edit_grouping_path
+    end
+  end
+
   private
 
   def load_grouping
@@ -41,7 +67,7 @@ class GroupingsController < ApplicationController
   end
 
   def grouping_params
-    params[:grouping].permit(:background)
+    params.require(:grouping).permit(:background, :parent_grouping_id, :name)
   end
 
   def coordinate(area)

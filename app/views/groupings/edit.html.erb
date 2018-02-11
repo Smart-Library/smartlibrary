@@ -1,29 +1,32 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Layout for <%= @grouping_name %></h1>
+  <%= form_for @grouping, builder: GroupingFormBuilder, url: grouping_path, method: 'put', html: { multipart: true } do |f| %>
+    <%= render 'grouping_form', form: f %>
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Layout for <%= @grouping_name %></h1>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="layout-area col-sm-12"
-         style="background-image: url(<%= @background %>);">
-      <% @children.each do |child| %>
-        <%= area_tag(child, 'draggable') %>
-      <% end %>
+    <div class="row">
+      <div class="layout-area col-sm-12"
+           style="background-image: url(<%= @background %>);">
+        <% @children.each do |child| %>
+          <%= area_tag(child, 'draggable') %>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= form_for @grouping, url: grouping_path, method: 'put', html: { multipart: true } do |f| %>
+    <div class="row">
+      <div class="col-sm-12">
         <%= f.file_field :background, class: 'form-control' %>
-        <%= f.submit 'Update Layout', class: 'btn btn-success' %>
-      <% end %>
+        <%= link_to 'Back', @grouping, class: 'btn' %>
+        <%= f.submit 'Update Grouping', class: 'btn btn-success' %>
+        <%= link_to 'Destroy Grouping', @grouping,  method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 <script type="text/javascript">
-  window.onload = function () {
+  $(document).on('turbolinks:load', function () {
     setupInteractJS();
     registerOnUpdateLayout();
-  }
+  })
 </script>

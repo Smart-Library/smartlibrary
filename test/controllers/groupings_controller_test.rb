@@ -4,12 +4,46 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @grouping1 = groupings :grouping1
     @grouping2 = groupings :grouping2
+    @grouping3 = groupings :grouping3
+  end
+
+  test "#index responds with success" do
+    get groupings_path
+
+    assert_response :success
   end
 
   test "#show responds with success" do
     get grouping_path(@grouping1)
 
     assert_response :success
+  end
+
+  test "#new responds with success" do
+    get new_grouping_url
+    assert_response :success
+  end
+
+  test "#create with name and parent" do
+    post groupings_url, params: { grouping: { name: 'new', parent_grouping_id: @grouping1.id } }
+
+    grouping = Grouping.last
+    assert_equal 'new', grouping.name
+    assert_equal @grouping1.id, grouping.parent_grouping_id
+  end
+
+  test "#create without parent" do
+    post groupings_url, params: { grouping: { name: 'new' } }
+
+    grouping = Grouping.last
+    assert_equal 'new', grouping.name
+    assert_nil grouping.parent_grouping_id
+  end
+
+  test "#create nothing created when grouping doesn't have a name" do
+    assert_no_difference 'Grouping.count' do
+      post groupings_url, params: { grouping: { parent_grouping_id: @grouping1.id } }
+    end
   end
 
   test "#edit responds with success" do
@@ -33,11 +67,30 @@ class GroupingsControllerTest < ActionDispatch::IntegrationTest
     img = fixture_file_upload('files/' + file_name, content_type)
 
     put grouping_url(@grouping2), params: { grouping: { background: img } }
-    @grouping2.reload
 
-    assert_equal file_name, @grouping2.background_file_name
+    assert_equal file_name, @grouping2.reload.background_file_name
     assert_equal content_type, @grouping2.background_content_type
     assert_redirected_to edit_grouping_path(@grouping2)
+  end
+
+  test "#update grouping name" do
+    new_name = 'some new name'
+    put grouping_url(@grouping1), params: { grouping: { name: new_name}}
+
+    assert_equal new_name, @grouping1.reload.name
+  end
+
+  test "#update change grouping parent" do
+    put grouping_url(@grouping2), params: { grouping: { parent_grouping_id: @grouping3.id }}
+
+    assert_equal @grouping3, @grouping2.reload.parent_grouping
+  end
+
+  test "#destroy successfully deletes record" do
+    assert_difference 'Grouping.count', -1 do
+      delete grouping_url(@grouping1)
+    end
+    assert_nil Grouping.find_by_id(@grouping1.id)
   end
 
   private
