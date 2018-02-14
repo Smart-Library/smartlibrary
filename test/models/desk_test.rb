@@ -49,4 +49,8 @@ class DeskTest < ActiveSupport::TestCase
 
     assert_no_broadcasts 'desks'
   end
+
+  test "#hierarchy returns correct list" do
+    assert_equal [@desk1.grouping, @desk1], @desk1.hierarchy
+  end
 end
