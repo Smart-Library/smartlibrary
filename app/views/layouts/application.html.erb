@@ -18,6 +18,9 @@
     <%= link_to 'Smart Library', root_path, class: 'display-4' %>
     <p class="lead">Think Libraries. But Smarter.</p>
   </div>
-  <%= yield %>
+  <div class="container">
+    <%= breadcrumbs display_single_fragment: true, style: :bootstrap, separator: ' / ' %>
+    <%= yield %>
+  </div>
 </body>
 </html>
