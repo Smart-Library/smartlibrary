@@ -1,23 +1,22 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1><%= @grouping_name %></h1>
-    </div>
+<% breadcrumb @grouping %>
+<div class="row">
+  <div class="col-sm-12">
+    <h1><%= @grouping_name %></h1>
   </div>
-  <div class="row">
-    <div class="layout-area col-sm-12"
-         style="background-image: url(<%= @background %>);">
-        <% @children.each do |child| %>
-          <%= link_to(child) do %>
-            <%= area_tag(child) %>
-          <% end %>
+</div>
+<div class="row">
+  <div class="layout-area col-sm-12"
+       style="background-image: url(<%= @background %>);">
+      <% @children.each do |child| %>
+        <%= link_to(child) do %>
+          <%= area_tag(child) %>
         <% end %>
-    </div>
+      <% end %>
   </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= link_to 'Parent Grouping', @parent, class: 'btn' %>
-      <%= link_to 'Edit', edit_grouping_path(@grouping), class: 'btn' %>
-    </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to 'Parent Grouping', @parent, class: 'btn' %>
+    <%= link_to 'Edit', edit_grouping_path(@grouping), class: 'btn' %>
   </div>
 </div>
