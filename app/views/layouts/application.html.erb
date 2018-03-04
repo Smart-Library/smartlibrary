@@ -18,6 +18,14 @@
     <%= link_to 'Smart Library', root_path, class: 'display-4' %>
     <p class="lead">Think Libraries. But Smarter.</p>
   </div>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <%= link_to 'Desks', desks_path, class: 'nav-link ' + active_tab_class('desks') %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Groupings', groupings_path, class: 'nav-link ' + active_tab_class('groupings') %>
+    </li>
+  </ul>
   <div class="container">
     <%= breadcrumbs display_single_fragment: true, style: :bootstrap, separator: ' / ' %>
     <%= yield %>
