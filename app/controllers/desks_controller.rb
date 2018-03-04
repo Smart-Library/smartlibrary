@@ -1,7 +1,7 @@
 class DesksController < ApplicationController
-  before_action :load_desk, only: %i(show update)
+  before_action :load_desk, only: %i(show edit update)
 
-  respond_to :html, only: %i(show)
+  respond_to :html, only: %i(show update)
   respond_to :json, only: %i(show create update)
 
   def index
@@ -21,6 +21,9 @@ class DesksController < ApplicationController
     respond_with(@desk)
   end
 
+  def edit
+  end
+
   def update
     if @desk.update(desk_params)
       respond_with(@desk)
@@ -36,6 +39,6 @@ class DesksController < ApplicationController
   end
 
   def desk_params
-    params.require(:desk).permit(:name, :occupied)
+    params.require(:desk).permit(:name, :occupied, :grouping_id)
   end
 end

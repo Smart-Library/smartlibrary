@@ -43,6 +43,12 @@ class DesksControllerTest < ActionDispatch::IntegrationTest
     assert_equal @desk.to_json, response.body
   end
 
+  test "#edit responds with success" do
+    get desk_path(@desk)
+
+    assert_response :success
+  end
+
   test "#update updates desk and responds with updated desk" do
     occupied = @desk.occupied
     put desk_path(@desk, format: :json), params: { desk: { occupied: !occupied } }
@@ -61,5 +67,12 @@ class DesksControllerTest < ActionDispatch::IntegrationTest
     put desk_path(@desk, format: :json), params: { desk: { name: nil } }
 
     assert_response :unprocessable_entity
+  end
+
+  test "#update successfully changes grouping_id" do
+    grouping_id = groupings(:grouping2).id
+    put desk_path(@desk), params: { desk: { grouping_id: grouping_id } }
+
+    assert_equal grouping_id, @desk.reload.grouping_id
   end
 end
