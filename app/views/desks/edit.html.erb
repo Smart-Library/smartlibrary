@@ -1,0 +1,18 @@
+<%= form_for @desk, builder: GroupingFormBuilder, url: desk_path, method: 'put' do |f| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <%= f.label :name, 'Desk Name' %>
+        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.label :grouping_id, 'Grouping' %>
+        <%= f.grouping_select :grouping_id, class: 'form-control'%>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= link_to 'Back', @desk, class: 'btn' %>
+      <%= f.submit 'Update Desk', class: 'btn btn-success' %>
+    </end>
+  </end>
+<% end %>
